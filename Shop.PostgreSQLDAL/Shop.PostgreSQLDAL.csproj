@@ -1,7 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shop.EFramework\Shop.EFramework.csproj" />
+    <ProjectReference Include="..\Shop.IDAL\Shop.IDAL.csproj" />
+  </ItemGroup>
 
 </Project>

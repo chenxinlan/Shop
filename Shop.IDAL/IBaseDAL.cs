@@ -7,7 +7,7 @@ namespace Shop.IDAL
 {
     public interface IBaseDAL<T> where T: BaseModel,new()
     {
-        T Add(T model);
+        int Add(T model);
         void AddList(List<T> model);
         int Del(int id);
         void Update(T model);

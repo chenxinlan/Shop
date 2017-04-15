@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Shop.API
 {
     [Route("api/[controller]")]
-    public class ShopAPIController : Controller
+    public class shopController : Controller
     {
         // GET: api/values
         [HttpGet]

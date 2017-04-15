@@ -10,7 +10,7 @@ namespace Shop.Entities
 
         private string _id;
 
-        public string Id
+        public string id
         {
             get { return _id; }
             set
@@ -29,26 +29,26 @@ namespace Shop.Entities
         /// <summary>
         /// 访问IP
         /// </summary>
-        public string VisitIP { get; set; }
+        public string visitIP { get; set; }
 
         /// <summary>
         /// 服务器IP
         /// </summary>
-        public string ServerIP { get; set; }
+        public string serverIP { get; set; }
 
         /// <summary>
         /// 来源
         /// </summary>
-        public string Source { get; set; }
+        public string source { get; set; }
 
         /// <summary>
         /// 内容
         /// </summary>
-        public string Content { get; set; }
+        public string content { get; set; }
 
         /// <summary>
         /// 操作时间
         /// </summary>
-        public DateTime OperateTime { get; set; } = DateTime.Now;//默认值
+        public DateTime operateTime { get; set; } = DateTime.Now;//默认值
     }
 }

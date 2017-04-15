@@ -8,9 +8,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Shop.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Shop
 {
+    public class testdbContext: DbContext
+    {
+        private readonly testdbContext _context;
+        
+    }
+
     public class Startup
     {
         public IConfigurationRoot Configuration { get; }
@@ -40,9 +49,9 @@ namespace Shop
             var sqlConnectionString= Configuration.GetConnectionString("DefaultConnection");
 
             //添加数据上下文
-            //services.AddDbContext<ShopDbContext>(options =>
-            //        options.UseNpgsql(sqlConnectionString)
-            //);
+           
+            services.AddApplicationInsightsTelemetry(Configuration);
+            services.AddDbContext<testdbContext>(options => options.UseNpgsql(sqlConnectionString));
 
             // Add framework services.
             services.AddMvc();
