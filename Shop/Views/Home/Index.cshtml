@@ -1,0 +1,19 @@
+﻿@using Shop.Controllers;
+@model SiteConfig
+@{
+    Layout = null;
+    ViewData["Title"] = Model.Name;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>@Model.Name</h1>
+    <h2>@Model.Info</h2>
+</body>
+</html>
