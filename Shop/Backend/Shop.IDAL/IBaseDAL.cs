@@ -9,10 +9,9 @@ namespace Shop.IDAL
     {
         int Add(T model);
         void AddList(List<T> model);
-        int Del(int ? id);
+        int Del(int? id);
         int Update(T model);
         T GetModel(string Name);
         List<T> GetModels();
-        
     }
 }

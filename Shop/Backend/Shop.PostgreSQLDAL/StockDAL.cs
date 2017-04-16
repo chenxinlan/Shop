@@ -13,8 +13,9 @@ namespace Shop.PostgreSQLDAL
     {
         protected readonly ShopDbContext _dbContext;
 
-        public StockDAL(ShopDbContext dbContext){
-             _dbContext = dbContext;
+        public StockDAL(ShopDbContext dbContext)
+        {
+            _dbContext = dbContext;
         }
 
         public int Add(Stock model)
@@ -28,20 +29,21 @@ namespace Shop.PostgreSQLDAL
             throw new NotImplementedException();
         }
 
-        public int Del(int ?id)
+        public int Del(int? id)
         {
             if (id == null)
             {
                 return -1;
             }
             var stocks = _dbContext.Stocks.SingleOrDefaultAsync(m => m.id == id.ToString());
-            if (stocks == null) {
+            if (stocks == null)
+            {
                 return -1;
             }
 
             return 1;
         }
-        
+
         public Stock GetModel(string Name)
         {
             throw new NotImplementedException();
@@ -88,7 +90,7 @@ namespace Shop.PostgreSQLDAL
 
         public int Update(Stock model)
         {
-            if (model != null && model.id != null) 
+            if (model != null && model.id != null)
             {
                 //ModelState.IsValid
                 try
@@ -100,7 +102,7 @@ namespace Shop.PostgreSQLDAL
                 {
                     throw;
                 }
-                
+
             }
 
             return -1;

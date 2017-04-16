@@ -12,15 +12,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
+using Shop.EFramework;
 
 namespace Shop
 {
-    public class testdbContext: DbContext
-    {
-        private readonly testdbContext _context;
-        
-    }
-
     public class Startup
     {
         public IConfigurationRoot Configuration { get; }
@@ -52,11 +47,12 @@ namespace Shop
             //添加数据上下文
            
             services.AddApplicationInsightsTelemetry(Configuration);
-            services.AddDbContext<testdbContext>(options => options.UseNpgsql(sqlConnectionString));
+            services.AddDbContext<ShopDbContext>(options => options.UseNpgsql(sqlConnectionString));
 
             // Add framework services.
             services.AddMvc();
 
+            //对Swagger的支持(api)
             services.AddSwaggerGen();
             services.ConfigureSwaggerGen(options =>
             {
@@ -77,7 +73,7 @@ namespace Shop
             services.Configure<SiteConfig>(Configuration.GetSection("SiteConfig"));
         }
 
-        //配置Web应用程序使用配置和使用MVC路由
+        //配置Web应用程序使用配置和使用MVC路由（http请求管道配置）
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -94,16 +90,20 @@ namespace Shop
 
             if (env.IsDevelopment())//开发版本 调试的时候
             {
+                //开发环境异常
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
             else //生产版本 运行的时候
             {
+                //生产环境异常
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            //使用静态文件
             app.UseStaticFiles();
 
+            //使用mvc,设置默认路由
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

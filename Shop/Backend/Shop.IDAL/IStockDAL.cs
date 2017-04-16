@@ -8,6 +8,6 @@ namespace Shop.IDAL
     public interface IStockDAL: IBaseDAL<Stock>
     {
         //扩展
-       IEnumerable<Stock> GetModelByOther(int? currentPage, int? pageSize, string name, int? amount);
+        IEnumerable<Stock> GetModelByOther(int? currentPage, int? pageSize, string name, int? amount);
     }
 }

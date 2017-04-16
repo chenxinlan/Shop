@@ -238,6 +238,7 @@ var myStockModule = (function (my) {
                                 url: 'api/v1/stock/',
                                 data: $scope.stockModel
                             }).success(function (data, status, headers, config) {
+                                //返回是数字.需要跳转到浏览页面.
                                 if (!_.isUndefined(data) && !_.isNull(data)) {
                                     $scope.stockModel = data;
                                     $scope.editName = "编辑";

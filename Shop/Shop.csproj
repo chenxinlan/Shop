@@ -901,7 +901,6 @@
     <Content Include="wwwroot\lib\angular.js\ui-select2\select2.png" />
     <Content Include="wwwroot\lib\angular.js\ui-select2\select2x2.png" />
     <Content Include="wwwroot\lib\angular.js\w5cValidator.js" />
-    <Content Include="wwwroot\lib\angular.min.js.map" />
     <Content Include="wwwroot\lib\jquery\jquery-2.1.4.js" />
     <Content Include="wwwroot\lib\jquery\jquery-2.1.4.min.js" />
     <Content Include="wwwroot\lib\jquery\jquery.cookie.js" />
@@ -925,6 +924,11 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Backend\Shop.BLL\" />
+    <Folder Include="Backend\Shop.COMMON\" />
+    <Folder Include="Backend\Shop.Entities\" />
+    <Folder Include="Backend\Shop.IDAL\" />
+    <Folder Include="Backend\Shop.PostgreSQLDAL\" />
     <Folder Include="wwwroot\Frontend\Models\" />
     <Folder Include="wwwroot\lib\angular.js\eipSite\img\" />
   </ItemGroup>
