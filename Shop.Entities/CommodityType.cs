@@ -11,9 +11,9 @@ namespace Shop.Entities
     {
         public CommodityType()
         {
-            if (string.IsNullOrEmpty(this.Id) || (string.IsNullOrWhiteSpace(this.Id)))
+            if (string.IsNullOrEmpty(this.id) || (string.IsNullOrWhiteSpace(this.id)))
             {
-                this.Id = Guid.NewGuid().ToString("N");
+                this.id = Guid.NewGuid().ToString("N");
             }
         }
 

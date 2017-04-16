@@ -11,7 +11,12 @@ namespace Shop.API
     [Route("api/[controller]")]
     public class shopController : Controller
     {
-        // GET: api/values
+
+        /// <summary>
+        /// GET: api/shop
+        ///获取库存所有数据
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<string> Get()
         {

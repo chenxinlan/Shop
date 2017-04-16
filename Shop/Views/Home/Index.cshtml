@@ -7,13 +7,60 @@
 
 <!DOCTYPE html>
 
-<html>
+<html ng-app="MyApp">
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>商品库存平台-主页</title>
+
+    <!--样式引用-->
+       <!--bootstrap-->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+       <!--ui-grid-->
+    <link href="~/lib/angular-ui-grid/ui-grid.css" rel="stylesheet" />
+
+    <!--js包引用-->
+       <!--lodash-->
+    <script src="~/lib/lodash/lodash.js"></script>
+       <!--bootstrap-->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+       <!--angular-->
+    <script src="~/lib/angular/angular.js"></script>
+       <!--ui-grid-->
+    <script src="~/lib/angular-ui-grid/ui-grid.js"></script>
+       <!--ui-router-->
+    <script src="~/lib/angular-ui-router/release/angular-ui-router.js"></script>
+       <!--angular-cookies-->
+    <script src="~/lib/angular-cookies/angular-cookies.js"></script>
+       <!--jquery-->
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    @* 业务页面. *@
+       <!--app 启动页面js-->
+    <script src="~/Frontend/Controllers/app.js"></script>
+    <script src="~/Frontend/common/animations.js"></script>
+    <script src="~/Frontend/common/controllers.js"></script>
+    <script src="~/Frontend/common/directives.js"></script>
+    <script src="~/Frontend/common/filters.js"></script>
+    <script src="~/Frontend/common/services.js"></script>
+    <script src="~/Frontend/Controllers/stock.js"></script>
+    <script src="~/Frontend/Controllers/commodityType.js"></script>
 </head>
 <body>
-    <h1>@Model.Name</h1>
-    <h2>@Model.Info</h2>
+    <div ui-view=""></div>
+    <div class="page-header">
+        <h1>
+            @Model.Name
+            <small>@Model.Info</small>
+        </h1>
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="stock">库存表</a></li>
+        <li><a ui-sref="app.commodityType">分类表</a></li>
+        <li><a href="#">...</a></li>
+        <li><a href="#">...</a></li>
+        <li><a href="#">...</a></li>
+        <li><a href="#">...</a></li>
+    </ul>
 </body>
 </html>

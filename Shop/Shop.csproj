@@ -7,7 +7,44 @@
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp1.1\Shop.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\angular-ui-grid\**" />
+    <Content Remove="wwwroot\lib\angular-ui-grid\**" />
+    <EmbeddedResource Remove="wwwroot\lib\angular-ui-grid\**" />
+    <None Remove="wwwroot\lib\angular-ui-grid\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\lib\angular-ui-router\.bower.json" />
+    <Content Include="wwwroot\lib\angular-ui-router\bower.json" />
+    <Content Include="wwwroot\lib\angular-ui-router\CHANGELOG.md" />
+    <Content Include="wwwroot\lib\angular-ui-router\CONTRIBUTING.md" />
+    <Content Include="wwwroot\lib\angular-ui-router\karma.conf.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\LICENSE" />
+    <Content Include="wwwroot\lib\angular-ui-router\README.md" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\angular-ui-router.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\angular-ui-router.js.map" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\angular-ui-router.min.js.map" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\resolveService.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\resolveService.js.map" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\resolveService.min.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\resolveService.min.js.map" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\stateEvents.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\stateEvents.js.map" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\stateEvents.min.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\stateEvents.min.js.map" />
+    <Content Include="wwwroot\lib\angular-ui-router\rollup.config.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\tslint.json" />
+    <Content Include="wwwroot\lib\angular-ui-router\yarn.lock" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="angular-ui-grid" Version="4.0.4" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
@@ -18,12 +55,14 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="1.1.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+    <PackageReference Include="Swashbuckle.SwaggerGen" Version="6.0.0-beta902" />
+    <PackageReference Include="Swashbuckle.SwaggerUi" Version="6.0.0-beta902" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shop.BLL\Shop.BLL.csproj" />
+    <Folder Include="Frontend\Models\" />
   </ItemGroup>
 
 </Project>

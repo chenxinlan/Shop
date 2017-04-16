@@ -10,7 +10,8 @@ using Microsoft.Extensions.Logging;
 using Shop.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using System.IO;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Shop
 {
@@ -55,6 +56,22 @@ namespace Shop
 
             // Add framework services.
             services.AddMvc();
+
+            services.AddSwaggerGen();
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.SingleApiVersion(new Swashbuckle.Swagger.Model.Info
+                {
+                    Version = "v1",
+                    Title = "My Web Application",
+                    Description = "RESTful API for My Web Application",
+                    TermsOfService = "None"
+                });
+                options.IncludeXmlComments(Path.Combine(PlatformServices.Default.Application.ApplicationBasePath,
+                    "Shop.XML")); // 注意：此处替换成所生成的XML documentation的文件名。
+                options.DescribeAllEnumsAsStrings();
+            });
+
             //添加options
             services.AddOptions();
             services.Configure<SiteConfig>(Configuration.GetSection("SiteConfig"));
@@ -71,6 +88,9 @@ namespace Shop
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseSwagger();
+            app.UseSwaggerUi();
 
             if (env.IsDevelopment())//开发版本 调试的时候
             {
