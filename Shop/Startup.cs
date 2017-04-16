@@ -113,7 +113,7 @@ namespace Shop
                 
             });
 
-            SeedData.Initialize(app.ApplicationServices); //初始化数据
+            //SeedData.Initialize(app.ApplicationServices); //初始化数据
 
             //app.UseMvc();
         }

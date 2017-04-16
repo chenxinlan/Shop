@@ -234,7 +234,7 @@ var myStockModule = (function (my) {
                         if (!_.isNull($scope.stockModel.id) && $scope.stockModel.id != "") {
                             //提交保存
                             $http({
-                                method: "Post",
+                                method: "POST",
                                 url: 'api/v1/stock/',
                                 data: $scope.stockModel
                             }).success(function (data, status, headers, config) {

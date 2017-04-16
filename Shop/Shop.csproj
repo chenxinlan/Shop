@@ -924,11 +924,8 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Backend\Shop.BLL\" />
     <Folder Include="Backend\Shop.COMMON\" />
     <Folder Include="Backend\Shop.Entities\" />
-    <Folder Include="Backend\Shop.IDAL\" />
-    <Folder Include="Backend\Shop.PostgreSQLDAL\" />
     <Folder Include="wwwroot\Frontend\Models\" />
     <Folder Include="wwwroot\lib\angular.js\eipSite\img\" />
   </ItemGroup>
