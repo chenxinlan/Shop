@@ -107,15 +107,27 @@ myApp.factory('httpInterceptor', ['$injector', '$location', '$q', '$cookies', fu
             return config;
         },
         'responseError': function (response) {
+
+            var rootScope = $injector.get('$rootScope');
+            var state = $injector.get('$rootScope').$state.current.name;
+            rootScope.stateBeforLogin = state;
+
+
             if (response.status == 401) {
-                var rootScope = $injector.get('$rootScope');
-                var state = $injector.get('$rootScope').$state.current.name;
-                rootScope.stateBeforLogin = state;
+               
                 rootScope.$state.go("/Index");
                 return $q.reject(response);
             } else if (response.status === 404) {
-                $location.path('/Index');
-                return $q.reject(response);
+                
+                rootScope.$state.go("app.notfound");
+
+            }else if (status === 403) {
+                
+                rootScope.$state.go("app.forbidden");
+            }
+            if (status === 500) {
+                
+                rootScope.$state.go("app.servererror");
             }
         },
         'response': function (response) {
