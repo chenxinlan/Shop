@@ -1,0 +1,79 @@
+﻿<div ng-controller="stockCtrl">
+        <div class="container-fluid c_out">
+            <div class="row-fluid cmp">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading sh" style="border-top: 2px solid #00A0C4;">
+                            <h3 class="panel-title"><i class="glyphicon glyphicon-search"></i><span> 查询列表</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                <form class=" form-horizontal" id="StockForm">
+                                    <div class="form-group">
+                                        <label for="txt1" class="col-sm-1 control-label">name：</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="txtId" ng-model="whereParam.name" placeholder="可输入需要查询的名称">
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <button type="submit" class="btn btn-primary btn-sm" ng-click="goSearchBtn()">查询</button>
+                                            <button type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#searchModal">高级查询</button>
+                                            <div class="btn-group pull-right">
+                                                <a class="btn btn-default btn-sm  btn_bColor" title="新增" type="button" href="" ng-click="goNewBtn()" data-toggle="modal" data-target="#userModal"><i class="glyphicon glyphicon-plus"></i> </a>
+                                                <a class="btn btn-default btn-sm btn_bColor" title="修改" type="button" href="" ng-click="goEditBtn(this)"><i class="glyphicon glyphicon-pencil"></i> </a>
+                                                <a class="btn btn-default btn-sm btn_bColor" title="删除" type="button" href="" ng-click="goDelBtn()"><i class="glyphicon glyphicon-trash"></i> </a>
+                                                <div class="btn-group more">
+                                                    <button type="button" class="btn btn-default  btn-sm   dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="glyphicon glyphicon-th-list"></i>  <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">导出</a></li>
+                                                        <li role="separator" class="divider"><a href="#">导入</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div>
+                                <div role="grid" ui-grid="gridOptions" ui-grid-pagination class="gridStyle" ui-grid-selection>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchmodalabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">查询条件</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="lblname" class="col-sm-2 control-label">名称：</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="txtname" placeholder="可输入需要查询的字典名称" ng-model="whereParam.name">
+                                            </div>
+                                            <label for="txtSearchISENABLED" class="col-sm-2 control-label">数量：</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="txtname" placeholder="可输入需要查询的字典名称" ng-model="whereParam.amount">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default " ng-click="goSearchBtn()">查询</button>
+                            <button type="button" class="btn btn-default" ng-click="initSearchCondition()">重置</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

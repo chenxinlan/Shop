@@ -1,0 +1,47 @@
+﻿<div ng-controller="stockCtrl">
+        <div class="container-fluid c_out">
+            <div class="row-fluid cmp">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading sh" style="border-top: 2px solid #00A0C4;">
+                            <h3 class="panel-title"><i class="glyphicon glyphicon-search"></i><span> {{editName}}列表</span></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                <form class=" form-horizontal" id="StockEditForm">
+                                    <div class="form-group">
+                                        <label for="txtName" class="col-sm-1 control-label">商品名称：</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="txtName" ng-model="stockModel.name" placeholder="">
+                                        </div>
+                                        <label for="txtCommodityType" class="col-sm-1 control-label">商品分类：</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="txtCommodityType" ng-model="stockModel.commodityType" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lblPrice" class="col-sm-1 control-label">商品价格：</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="txtPrice" ng-model="stockModel.price" placeholder="">
+                                        </div>
+                                        <label for="lblAmount" class="col-sm-1 control-label">商品数量：</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="txtAmount" ng-model="stockModel.amount" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">                                        
+                                        <div class="col-sm-1">
+                                            <button type="submit" class="btn btn-primary btn-sm" ng-click="goSaveBtn()">保存</button>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <button type="button" class="btn btn-primary btn-sm" ng-click="goReturnBtn()">返回</button>
+                                        </div>
+                                    </div>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
