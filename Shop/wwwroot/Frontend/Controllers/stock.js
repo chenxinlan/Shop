@@ -5,8 +5,8 @@ var myStockModule = (function (my) {
 
     var stockModule = angular.module("stockModule", []);
 
-    stockModule.controller("stockCtrl", ['$scope', 'UrlService', '$location', '$state', '$http',
-        function ($scope, UrlService, $location, $state, $http) {
+    stockModule.controller("stockCtrl", ['$scope', 'UrlService', '$location', '$state', '$http', 'DefaultDialogService', 'COMMON_CONSTANT',
+        function ($scope, UrlService, $location, $state, $http, DefaultDialogService, COMMON_CONSTANT) {
 
             //仓库数据模型
             $scope.stockModel = {
@@ -16,7 +16,7 @@ var myStockModule = (function (my) {
                 price: '',
                 amount: ''
             }
-            
+
             //编辑页面处理
             $scope.editRun = function () {
                 $scope.editName = "编辑";
@@ -34,6 +34,7 @@ var myStockModule = (function (my) {
                         }
                     }).error(function (data, status, headers, config) {
                         //错误提示
+                        DefaultDialogService.open(COMMON_CONSTANT.SERVERFAIL, '错误提示');
                     });
                 }
             }
@@ -87,7 +88,7 @@ var myStockModule = (function (my) {
                 paginationPageSizes: [10, 20, 30],
                 paginationPageSize: $scope.pagingOptions.pageSize,
                 multiSelect: true,
-                totalItems:0,
+                totalItems: 0,
             };
 
             $scope.confirmSearch = function () {
@@ -99,9 +100,9 @@ var myStockModule = (function (my) {
 
                 $http({
                     method: "GET",
-                    url: 'api/v1/stock?currentPage=' + $scope.pagingOptions.currentPage + '&pageSize=' + $scope.pagingOptions.pageSize + "&name='" + searchText.name + "'&amount='" + searchText.amount+"'",
+                    url: 'api/v1/stock?currentPage=' + $scope.pagingOptions.currentPage + '&pageSize=' + $scope.pagingOptions.pageSize + "&name='" + searchText.name + "'&amount='" + searchText.amount + "'",
                 }).success(function (data, status, headers, config) {
-                        
+
                     if (!_.isUndefined(data) && data != null && data != "") {
                         $scope.myData = data;
                         $scope.gridOptions.totalItems = data.length;
@@ -110,12 +111,13 @@ var myStockModule = (function (my) {
                         $scope.myData = [];
                         $scope.pagingOptions.totalItems = 0;
                     }
-                   
+
                     if (!$scope.$$phase) {
                         $scope.$apply();
                     }
                 }).error(function (data, status, headers, config) {
                     //错误提示
+                    DefaultDialogService.open(COMMON_CONSTANT.SERVERFAIL, '错误提示');
                 });
             }
 
@@ -148,11 +150,12 @@ var myStockModule = (function (my) {
                 //是否有选择记录.
                 var selectRowCount = $scope.getcurrentselection().length;
                 if (selectRowCount == 0) {
-                    
+
+                    DefaultDialogService.open(COMMON_CONSTANT.NORECORD);
                 } else {
                     $scope.stockModel = $scope.getcurrentselection()[0];
                     if ($scope.stockModel.id)
-                         $state.go("app.stock.Edit", { id: $scope.stockModel.id });
+                        $state.go("app.stock.Edit", { id: $scope.stockModel.id });
                 }
 
             };
@@ -160,18 +163,27 @@ var myStockModule = (function (my) {
             $scope.goDelBtn = function () {
                 var selectRowCount = $scope.getcurrentselection().length;
                 if (selectRowCount == 0) {
-
+                    DefaultDialogService.open(COMMON_CONSTANT.NORECORD);
                 } else {
-                    $scope.stockModel = $scope.getcurrentselection()[0];
-                    if ($scope.stockModel.id)
-                        $http({
-                            method: "Delete",
-                            url: 'api/v1/stock/' + $scope.stockModel.id,
-                        }).success(function (data, status, headers, config) {
-                            
-                        }).error(function (data, status, headers, config) {
-                            //错误提示
-                        });
+                    NomDefaultDialog.confirm("是否确定删除?").then(
+                        function () {
+                            $scope.stockModel = $scope.getcurrentselection()[0];
+                            if ($scope.stockModel.id) {
+                                $http({
+                                    method: "Delete",
+                                    url: 'api/v1/stock/' + $scope.stockModel.id,
+                                }).success(function (data, status, headers, config) {
+
+                                }).error(function (data, status, headers, config) {
+                                    //错误提示
+                                    DefaultDialogService.open(COMMON_CONSTANT.SERVERFAIL, '错误提示');
+                                });
+                                }
+                        },
+                        function () {
+                            console.log('不删除了');
+                        }
+                    );
                 }
             }
             //查询按钮
@@ -212,6 +224,8 @@ var myStockModule = (function (my) {
 
                         }).error(function (data, status, headers, config) {
                             //错误提示
+                            //错误提示
+                            DefaultDialogService.open(COMMON_CONSTANT.SERVERFAIL, '错误提示');
                         });
                     }
                 } else if ($scope.editName == "新建") {
@@ -230,6 +244,8 @@ var myStockModule = (function (my) {
                                 }
                             }).error(function (data, status, headers, config) {
                                 //错误提示
+                                //错误提示
+                                DefaultDialogService.open(COMMON_CONSTANT.SERVERFAIL, '错误提示');
                             });
                         }
                     }

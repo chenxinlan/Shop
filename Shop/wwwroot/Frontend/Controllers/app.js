@@ -64,6 +64,8 @@ myApp.run(function ($rootScope, $state, $stateParams, $http, $cookies, $template
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $rootScope._ = window._;// use in views, ng-repeat="x in _.range(3)"
+
+
 });
 
 //lodash://可以在ng-repeat等标签上使用
@@ -71,9 +73,10 @@ myApp.constant('_', window._);
 
 //页面的提示信息(常量是没法被装饰器拦截的)
 myApp.constant('COMMON_CONSTANT', {
-    SERVERFAIL: '服务器错误,保存失败！',
+    SERVERFAIL: '服务器错误,操作失败！',
     NOTFOUND: '无法查询到该数据！',
-    FAILEDLOADING: '加载失败！'
+    FAILEDLOADING: '加载失败！',
+    NORECORD:'无记录!'
 });
 
 //缓存模板

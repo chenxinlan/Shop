@@ -75,3 +75,41 @@ myApp.service('UrlService', ['$location', function ($location) {
     }
 
 }]);
+
+
+//4.弹出窗口封装
+myApp.factory("DefaultDialogService", ['ngDialog', function (ngDialog) {
+    return {
+        open: function (msg, title) {
+            return ngDialog.open({
+                template: 'appTemp/DefaultDialog',
+                className: 'ngdialog-theme-default',
+                closeByDocument: false,
+                showClose: true,
+                controller: ['$scope', function ($scope) {
+                    if (angular.isUndefined(title)) {
+                        title = "消息提示";
+                    }
+
+                    $scope.title = title;
+                    $scope.msgStr = msg;
+                }]
+            });
+        },
+        confirm: function (msg, title) {
+            return ngDialog.openConfirm({
+                template: 'appTemp/ConfirmDialog',
+                className: 'ngdialog-theme-default',
+                closeByDocument: false,
+                showClose: true,
+                controller: ['$scope', function ($scope) {
+                    if (angular.isUndefined(title)) {
+                        title = "消息提示";
+                    }
+                    $scope.title = title;
+                    $scope.msgStr = msg;
+                }]
+            });
+        }
+    };
+}]);

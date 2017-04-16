@@ -2,8 +2,8 @@
 
 var commodityTypeModule = angular.module("commodityTypeModule", []);
 
-commodityTypeModule.controller("commodityTypeCtrl", ['$scope', '$localStorage',
-    function ($scope, $localStorage) {
+commodityTypeModule.controller("commodityTypeCtrl", ['$scope',
+    function ($scope) {
 
 
     }]);
