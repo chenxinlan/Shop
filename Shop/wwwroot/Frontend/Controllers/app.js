@@ -171,8 +171,11 @@ myApp.config(function ($stateProvider, $stickyStateProvider, $urlRouterProvider,
         deepStateRedirect: { default: "app.commodityType.Select" }, sticky: true
     });
     /*查询*/states.push({ name: 'app.commodityType.Select', url: '/', templateUrl: '../Frontend/Views/commodityType.html' });
-    /*编辑页面*/states.push({ name: 'app.commodityType..Edit', url: '/edit/:id', templateUrl: ''});
+    /*编辑页面*/states.push({ name: 'app.commodityType..Edit', url: '/edit/:id', templateUrl: '' });
 
+   
+   
+    
     angular.forEach(states, function (state) { $stateProvider.state(state); });
 });
 

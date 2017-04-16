@@ -183,7 +183,7 @@ var myStockModule = (function (my) {
                         //function () {
                         //    console.log('不删除了');
                         //}
-                    );
+                    //);
                 }
             }
             //查询按钮
