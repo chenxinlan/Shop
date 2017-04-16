@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
 using Shop.EFramework;
+using Shop.Backend.Shop.EFramework;
 
 namespace Shop
 {
@@ -111,6 +112,9 @@ namespace Shop
                     template: "{controller=Home}/{action=Index}/{id?}");
                 
             });
+
+            SeedData.Initialize(app.ApplicationServices); //初始化数据
+
             //app.UseMvc();
         }
     }
