@@ -1,4 +1,4 @@
-﻿var myApp = angular.module('myApp', ['ui.router', 'ct.ui.router.extras', 'ngCookies',
+﻿var myApp = angular.module('myApp', ['ui.router', 'ct.ui.router.extras', 'ngCookies','ngDialog',
      'ui.grid', 'ui.grid.pagination', 'ui.grid.selection', 'ui.grid.edit',
     'commodityTypeModule','stockModule'
    ],
@@ -65,7 +65,26 @@ myApp.run(function ($rootScope, $state, $stateParams, $http, $cookies, $template
     $rootScope.$stateParams = $stateParams;
     $rootScope._ = window._;// use in views, ng-repeat="x in _.range(3)"
 
+    //缓存模板
+    $templateCache.put('appTemp/DefaultDialog',
+        '<div class="ngdialog-message">' +
+        '<h4 style="border-bottom:1px solid #ccc;padding-bottom:5px;">{{title}}</h4>' +
+        '<div>{{msgStr}}</div>' +
+        '</div>' +
+        '<div class="ngdialog-buttons mt">' +
+        '<button type="button" class="ngdialog-button btn btn-primary btn-sm" ng-click="closeThisDialog()">关闭</button>' +
+        '</div>');
 
+
+    $templateCache.put('appTemp/ConfirmDialog',
+        '<div class="ngdialog-message">' +
+        '<h4 style="border-bottom:1px solid #ccc;padding-bottom:5px;">{{title}}</h4>' +
+        '<div>{{msgStr}}</div>' +
+        '</div>' +
+        '<div class="ngdialog-buttons mt">' +
+        '<button type="button" class="ngdialog-button btn btn-danger btn-xs" ng-click="closeThisDialog()">关闭</button>' +
+        ' <button type="button" class="ngdialog-button btn btn-primary btn-sm" ng-click="confirm()">确定</button>' +
+        '</div>');
 });
 
 //lodash://可以在ng-repeat等标签上使用
@@ -79,30 +98,6 @@ myApp.constant('COMMON_CONSTANT', {
     NORECORD:'无记录!'
 });
 
-//缓存模板
-myApp.run([
-    '$templateCache', function ($templateCache) {
-        $templateCache.put('appTemp/DefaultDialog',
-            '<div class="ngdialog-message">' +
-            '<h4 style="border-bottom:1px solid #ccc;padding-bottom:5px;">{{title}}</h4>' +
-            '<div>{{msgStr}}</div>' +
-            '</div>' +
-            '<div class="ngdialog-buttons mt">' +
-            '<button type="button" class="ngdialog-button btn btn-primary btn-sm" ng-click="closeThisDialog()">关闭</button>' +
-            '</div>');
-
-
-        $templateCache.put('appTemp/ConfirmDialog',
-            '<div class="ngdialog-message">' +
-            '<h4 style="border-bottom:1px solid #ccc;padding-bottom:5px;">{{title}}</h4>' +
-            '<div>{{msgStr}}</div>' +
-            '</div>' +
-            '<div class="ngdialog-buttons mt">' +
-            '<button type="button" class="ngdialog-button btn btn-danger btn-xs" ng-click="closeThisDialog()">关闭</button>' +
-            ' <button type="button" class="ngdialog-button btn btn-primary btn-sm" ng-click="confirm()">确定</button>' +
-            '</div>');
-    }
-]);
 
 myApp.factory('httpInterceptor', ['$injector', '$location', '$q', '$cookies', function ($injector, $location, $q, $cookies) {
 

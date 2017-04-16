@@ -5,8 +5,8 @@ var myStockModule = (function (my) {
 
     var stockModule = angular.module("stockModule", []);
 
-    stockModule.controller("stockCtrl", ['$scope', 'UrlService', '$location', '$state', '$http', 'DefaultDialogService', 'COMMON_CONSTANT',
-        function ($scope, UrlService, $location, $state, $http, DefaultDialogService, COMMON_CONSTANT) {
+    stockModule.controller("stockCtrl", ['$scope', 'UrlService', '$location', '$state', '$http', 'DefaultDialogService', 'COMMON_CONSTANT','ngDialog',
+        function ($scope, UrlService, $location, $state, $http, DefaultDialogService, COMMON_CONSTANT, ngDialog) {
 
             //仓库数据模型
             $scope.stockModel = {
@@ -148,12 +148,12 @@ var myStockModule = (function (my) {
             //编辑按钮操作
             $scope.goEditBtn = function () {
                 //是否有选择记录.
-                var selectRowCount = $scope.getcurrentselection().length;
+                var selectRowCount = $scope.getCurrentSelection().length;
                 if (selectRowCount == 0) {
 
                     DefaultDialogService.open(COMMON_CONSTANT.NORECORD);
                 } else {
-                    $scope.stockModel = $scope.getcurrentselection()[0];
+                    $scope.stockModel = $scope.getCurrentSelection()[0];
                     if ($scope.stockModel.id)
                         $state.go("app.stock.Edit", { id: $scope.stockModel.id });
                 }
@@ -161,13 +161,13 @@ var myStockModule = (function (my) {
             };
             //删除按钮操作
             $scope.goDelBtn = function () {
-                var selectRowCount = $scope.getcurrentselection().length;
+                var selectRowCount = $scope.getCurrentSelection().length;
                 if (selectRowCount == 0) {
                     DefaultDialogService.open(COMMON_CONSTANT.NORECORD);
                 } else {
-                    NomDefaultDialog.confirm("是否确定删除?").then(
-                        function () {
-                            $scope.stockModel = $scope.getcurrentselection()[0];
+                    //NomDefaultDialog.confirm("是否确定删除?").then(
+                    //    function () {
+                            $scope.stockModel = $scope.getCurrentSelection()[0];
                             if ($scope.stockModel.id) {
                                 $http({
                                     method: "Delete",
@@ -179,10 +179,10 @@ var myStockModule = (function (my) {
                                     DefaultDialogService.open(COMMON_CONSTANT.SERVERFAIL, '错误提示');
                                 });
                                 }
-                        },
-                        function () {
-                            console.log('不删除了');
-                        }
+                        //},
+                        //function () {
+                        //    console.log('不删除了');
+                        //}
                     );
                 }
             }
