@@ -9,7 +9,7 @@ using Shop.Entities;
 
 namespace Shop.API
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class stockController : Controller
     {
 
@@ -19,7 +19,7 @@ namespace Shop.API
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<Stock> Get(string name,int amount, int pageSize,int currentPage)
+        public IEnumerable<Stock> Get(int? currentPage,int? pageSize,string name,int ? amount)
         {
             List<Stock> lists = new List<Stock>() {
                 new Stock(){ id="1",name="苹果",commodityType=1,price=3,amount=5},
@@ -36,32 +36,62 @@ namespace Shop.API
                 new Stock(){ id="12",name="苹果444",commodityType=1,price=3,amount=7}
             };
 
+            if (currentPage == null && pageSize == null && string.IsNullOrEmpty(null) && amount == null)
+            {
+
+                //返回全部
+            }
+            else if (currentPage != null && pageSize != null) {
+
+                //分页查询,再筛选条件.
+            }
+
             return lists;
         }
 
-        // GET api/values/5
+        /// <summary>
+        /// 根据id获取实例
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        // GET api/v1/stock/苹果
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Stock Get(int id)
         {
-            return "value";
+            return new Stock() { };
         }
 
-        // POST api/values
+        /// <summary>
+        /// 新建一个库存
+        /// </summary>
+        /// <param name="value"></param>
+        // POST api/v1/stock/
         [HttpPost]
-        public void Post([FromBody]string value)
+        public Stock Post([FromBody]Stock value)
         {
+            return new Stock() { };
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        /// <summary>
+        /// 更新库存信息
+        /// </summary>
+        /// <param name="value">库存信息</param>
+        // PUT api/v1/stock/
+        [HttpPut]
+        public int Put([FromBody]Stock value)
         {
+            return 1;
         }
 
-        // DELETE api/values/5
+        /// <summary>
+        /// 删除库存信息
+        /// </summary>
+        /// <param name="id"></param>
+        // DELETE api/v1/stock/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public int Delete(int id)
         {
+            return 1;
         }
     }
 }
