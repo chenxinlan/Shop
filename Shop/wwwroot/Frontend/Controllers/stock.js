@@ -100,7 +100,7 @@ var myStockModule = (function (my) {
 
                 $http({
                     method: "GET",
-                    url: 'api/v1/stock?currentPage=' + $scope.pagingOptions.currentPage + '&pageSize=' + $scope.pagingOptions.pageSize + "&name='" + searchText.name + "'&amount='" + searchText.amount + "'",
+                    url: 'api/v1/stock?currentPage=' + $scope.pagingOptions.currentPage + '&pageSize=' + $scope.pagingOptions.pageSize +'+&name='+ searchText.name + '+&amount='+ searchText.amount+'",
                 }).success(function (data, status, headers, config) {
 
                     if (!_.isUndefined(data) && data != null && data != "") {
